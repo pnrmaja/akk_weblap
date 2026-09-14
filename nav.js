@@ -23,7 +23,7 @@ const NAV_HTML = `
             </li>
 
             <li>
-                <a href="#">Partnereink</a>
+                <a href="partnereink.html">Partnereink</a>
             </li>
 
         </ul>
