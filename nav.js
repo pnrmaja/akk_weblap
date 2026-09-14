@@ -22,10 +22,6 @@ const NAV_HTML = `
                 <a href="#">Képzőközpontunk</a>
             </li>
 
-            <li>
-                <a href="partnereink.html">Partnereink</a>
-            </li>
-
         </ul>
 
     </li>
@@ -74,7 +70,7 @@ const NAV_HTML = `
             </li>
 
             <li>
-                <a href="#">Partnervállalatok</a>
+                <a href="partnereink.html">Partnervállalatok</a>
             </li>
 
             <li>
