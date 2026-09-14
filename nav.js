@@ -95,8 +95,19 @@ const NAV_HTML = `
 export function aktualisLinkKiemelese(nav) {
     const aktualisOldal = window.location.pathname.split("/").pop() || "index.html";
 
-    nav.querySelectorAll(".menu > li > a").forEach(link => {
-        const linkOldal = link.getAttribute("href");
+    // Az összes menülinket megnézzük (nem csak a legfelső szintűeket),
+    // hogy a legördülő almenükben lévő oldalak (pl. Bemutatkozás, Szakmáink)
+    // is megkapják az "aktiv" jelölést, amikor épp azon az oldalon vagyunk.
+    nav.querySelectorAll(".menu a").forEach(link => {
+        const href = link.getAttribute("href");
+
+        if (!href || href === "#") {
+            return;
+        }
+
+        // A href lehet query stringes is (pl. szakmaink.html?varos=Budapest),
+        // ezért csak az elérési út (a "?" előtti rész) alapján hasonlítunk.
+        const linkOldal = href.split("?")[0];
 
         if (linkOldal === aktualisOldal) {
             link.classList.add("aktiv");

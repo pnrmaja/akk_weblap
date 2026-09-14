@@ -49,3 +49,17 @@ BUDAPEST_GOMB.addEventListener("click", function () {
 KAZINCBARCIKA_GOMB.addEventListener("click", function () {
     megjelenit("Kazincbarcika");
 });
+
+
+// A nav.js legördülő menüjében a "Budapest" / "Kazincbarcika" linkek
+// szakmaink.html?varos=Budapest (ill. ...Kazincbarcika) URL-re mutatnak.
+// Eddig ez a paraméter figyelmen kívül lett hagyva, és az oldal üresen
+// töltődött be, amíg a felhasználó rá nem kattintott az egyik gombra.
+// Most, ha a "varos" paraméter jelen van az URL-ben, az oldal betöltésekor
+// rögtön megjelenítjük a hozzá tartozó képzéseket.
+const URL_PARAMETEREK = new URLSearchParams(window.location.search);
+const URL_VAROS = URL_PARAMETEREK.get("varos");
+
+if (URL_VAROS === "Budapest" || URL_VAROS === "Kazincbarcika") {
+    megjelenit(URL_VAROS);
+}

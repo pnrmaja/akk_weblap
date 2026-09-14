@@ -184,4 +184,3 @@ export const KEZPESEK = [
         azonosito: "4 0721 05 12"
     }
 ];
-

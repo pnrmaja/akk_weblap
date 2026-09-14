@@ -90,6 +90,11 @@ nav {
     background-color: #eeeeee;
 }
 
+.dropdown-menu li a.aktiv {
+    font-weight: bold;
+    background-color: #eeeeee;
+}
+
 .dropdown-submenu {
     position: relative;
 }
