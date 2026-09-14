@@ -11,7 +11,7 @@ const kazincbarcikaiKepzesek = KEZPESEK.filter(
     kepzes => kepzes.varos === "Kazincbarcika"
 );
 
-// Az index.html jelenleg nem tartalmaz #budapest / #kazincbarcika elemet,
+// Az index.html nem tartalmaz #budapest / #kazincbarcika elemet,
 // ezért csak akkor próbálunk beléjük írni, ha léteznek. Így a script
 // nem dob hibát a főoldal betöltésekor, és amint a HTML-be bekerülnek
 // ezek az elemek, a lista automatikusan megjelenik, módosítás nélkül.
