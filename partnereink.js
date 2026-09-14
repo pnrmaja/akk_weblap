@@ -1,28 +1,100 @@
 const PARTNEREK = [
-    "C.S. Informatikai Rendszerek Kft.",
-    "Invitech",
-    "Herman Ottó Intézet Nonprofit Kft.",
-    "Lanmen",
-    "Benkő István Általános Iskola és Gimnázium",
-    "Nemzeti Élelmiszerlánc-biztonsági Hivatal",
-    "ACE Network Zrt.",
-    "Tree Rendszerház Kft.",
-    "NeO Rendszerház Kft.",
-    "Wildom Kft.",
-    "PaGeTo IT Kft.",
-    "Poli Computer PC Kft.",
-    "Prémium Egészségpénztár",
-    "NISZ Zrt.",
-    "Budapest Gyógyfürdői és Hévizei Zrt.",
-    "FLORCONTROLL-SERVICE Kft.",
-    "SZÁMALK-Szalézi Technikum és Szakgimnázium",
-    "MOL Campus",
-    "Német Iskola",
-    "Prompt",
-    "Mária Rádió",
-    "Hungaropharma",
-    "AVKF",
-    "Foxpost"
+    {
+        nev: "C.S. Informatikai Rendszerek Kft.",
+        link: "https://www.csinfo.hu/csinfo/"
+    },
+    {
+        nev: "Invitech",
+        link: "https://www.one.hu/kozep-nagyvallalatok"
+    },
+    {
+        nev: "Herman Ottó Intézet Nonprofit Kft.",
+        link: "https://www.hermanottointezet.hu/"
+    },
+    {
+        nev: "Lanmen",
+        link: "https://lanmen.hu/"
+    },
+    {
+        nev: "Benkő István Általános Iskola és Gimnázium",
+        link: "https://benkorefi.hu/"
+    },
+    {
+        nev: "Nemzeti Élelmiszerlánc-biztonsági Hivatal",
+        link: "https://portal.nebih.gov.hu/"
+    },
+    {
+        nev: "ACE Network Zrt.",
+        link: "https://acenet.tech/"
+    },
+    {
+        nev: "Tree Rendszerház Kft.",
+        link: "#"
+    },
+    {
+        nev: "NeO Rendszerház Kft.",
+        link: "http://neo-rendszerhaz.hu/"
+    },
+    {
+        nev: "Wildom Kft.",
+        link: "https://wildom.com/"
+    },
+    {
+        nev: "PaGeTo IT Kft.",
+        link: "#"
+    },
+    {
+        nev: "Poli Computer PC Kft.",
+        link: "https://www.policomputer.hu/"
+    },
+    {
+        nev: "Prémium Egészségpénztár",
+        link: "https://premiumegeszsegpenztar.hu/"
+    },
+    {
+        nev: "NISZ Zrt.",
+        link: "https://nisz.hu/"
+    },
+    {
+        nev: "Budapest Gyógyfürdői és Hévizei Zrt.",
+        link: "https://www.budapestgyogyfurdoi.hu/"
+    },
+    {
+        nev: "FLORCONTROLL-SERVICE Kft.",
+        link: "https://florcontrolltavfelugyelet.hu/"
+    },
+    {
+        nev: "SZÁMALK-Szalézi Technikum és Szakgimnázium",
+        link: "https://www.szamalk-szalezi.hu/"
+    },
+    {
+        nev: "MOL Campus",
+        link: "https://molcampus.hu/"
+    },
+    {
+        nev: "Német Iskola",
+        link: "https://nemetiskola.hu/"
+    },
+    {
+        nev: "Prompt",
+        link: "https://www.prompt.hu/"
+    },
+    {
+        nev: "Mária Rádió",
+        link: "https://www.mariaradio.hu/"
+    },
+    {
+        nev: "Hungaropharma",
+        link: "https://hungaropharma.hu/"
+    },
+    {
+        nev: "AVKF",
+        link: "https://avkf.hu//"
+    },
+    {
+        nev: "Foxpost",
+        link: "https://foxpost.hu/"
+    }
 ];
 
 
@@ -68,14 +140,17 @@ PARTNEREK.forEach((partner) => {
 
     PARTNER_ELEM.innerHTML += `
         <li>
-            ${partner}
+            <a href="${partner.link}" target="_blank">
+                ${partner.nev}
+            </a>
         </li>
     `;
 
 });
 
 
-const TURISZTIKAI_ELEM = document.querySelector("#turisztikai-helyszinek");
+const TURISZTIKAI_ELEM =
+    document.querySelector("#turisztikai-helyszinek");
 
 TURISZTIKAI_HELYSZINEK.forEach((helyszin) => {
 
