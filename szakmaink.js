@@ -2,18 +2,60 @@ import { KEZPESEK } from "./adatok.js";
 
 const BUDAPEST_GOMB = document.querySelector("#budapestGomb");
 const KAZINCBARCIKA_GOMB = document.querySelector("#kazincbarcikaGomb");
+
+const MINDEN_JOGVISZONY_GOMB = document.querySelector("#mindenJogviszonyGomb");
+const TANULOI_GOMB = document.querySelector("#tanuloiGomb");
+const FELNOTTKEPZESI_GOMB = document.querySelector("#felnottkepzesiGomb");
+
 const TAROLO = document.querySelector("#kepzesek");
 
+// Aktuálisan kiválasztott szűrők. A "varos" kezdetben null (nincs
+// városra szűrés, hacsak az URL nem ír elő mást - lásd lentebb),
+// a "jogviszony" pedig alapból "mind".
+let aktualisVaros = null;
+let aktualisJogviszony = "mind";
 
-function megjelenit(varos) {
+
+// A jogviszony mező néha összetett (pl. "tanulói-, felnőttképzési
+// jogviszony"), ezért nem egyenlőségre, hanem részszöveg-egyezésre
+// vizsgálunk, hogy az ilyen, több jogviszonyt is felkínáló képzések
+// mindkét szűrőnél megjelenjenek.
+function jogviszonyMegfelel(kepzes) {
+
+    if (aktualisJogviszony === "mind") {
+        return true;
+    }
+
+    if (aktualisJogviszony === "tanulói") {
+        return kepzes.jogviszony.includes("tanulói");
+    }
+
+    if (aktualisJogviszony === "felnőttképzési") {
+        return kepzes.jogviszony.includes("felnőttképzési");
+    }
+
+    return true;
+}
+
+
+function aktivGombBeallitasa(gombCsoport, aktivGomb) {
+    gombCsoport.forEach(gomb => gomb.classList.remove("aktiv"));
+    aktivGomb.classList.add("aktiv");
+}
+
+
+function megjelenit() {
 
     TAROLO.innerHTML = "";
 
-    // Ha nincs megadva város (pl. közvetlenül a "Szakmáink" linkre kattintva,
-    // szűrés nélkül nyitjuk meg az oldalt), az összes képzést megjelenítjük.
-    const SZURT_KEPZESEK = varos
-        ? KEZPESEK.filter(kepzes => kepzes.varos === varos)
-        : KEZPESEK;
+    const SZURT_KEPZESEK = KEZPESEK.filter(kepzes => {
+
+        const varosMegfelel = aktualisVaros
+            ? kepzes.varos === aktualisVaros
+            : true;
+
+        return varosMegfelel && jogviszonyMegfelel(kepzes);
+    });
 
     SZURT_KEPZESEK.forEach(kepzes => {
 
@@ -44,12 +86,44 @@ function megjelenit(varos) {
 
 
 BUDAPEST_GOMB.addEventListener("click", function () {
-    megjelenit("Budapest");
+    aktualisVaros = "Budapest";
+    megjelenit();
 });
 
 
 KAZINCBARCIKA_GOMB.addEventListener("click", function () {
-    megjelenit("Kazincbarcika");
+    aktualisVaros = "Kazincbarcika";
+    megjelenit();
+});
+
+
+MINDEN_JOGVISZONY_GOMB.addEventListener("click", function () {
+    aktualisJogviszony = "mind";
+    aktivGombBeallitasa(
+        [MINDEN_JOGVISZONY_GOMB, TANULOI_GOMB, FELNOTTKEPZESI_GOMB],
+        MINDEN_JOGVISZONY_GOMB
+    );
+    megjelenit();
+});
+
+
+TANULOI_GOMB.addEventListener("click", function () {
+    aktualisJogviszony = "tanulói";
+    aktivGombBeallitasa(
+        [MINDEN_JOGVISZONY_GOMB, TANULOI_GOMB, FELNOTTKEPZESI_GOMB],
+        TANULOI_GOMB
+    );
+    megjelenit();
+});
+
+
+FELNOTTKEPZESI_GOMB.addEventListener("click", function () {
+    aktualisJogviszony = "felnőttképzési";
+    aktivGombBeallitasa(
+        [MINDEN_JOGVISZONY_GOMB, TANULOI_GOMB, FELNOTTKEPZESI_GOMB],
+        FELNOTTKEPZESI_GOMB
+    );
+    megjelenit();
 });
 
 
@@ -64,7 +138,7 @@ const URL_PARAMETEREK = new URLSearchParams(window.location.search);
 const URL_VAROS = URL_PARAMETEREK.get("varos");
 
 if (URL_VAROS === "Budapest" || URL_VAROS === "Kazincbarcika") {
-    megjelenit(URL_VAROS);
-} else {
-    megjelenit();
+    aktualisVaros = URL_VAROS;
 }
+
+megjelenit();
