@@ -1,0 +1,121 @@
+// Közös navigáció – minden oldal ezt a modult tölti be, így a menü
+// egy helyen (itt) karbantartható, nem kell minden HTML-ben duplikálni.
+
+const NAV_HTML = `
+<ul class="menu">
+
+    <li>
+        <a href="index.html">Főoldal</a>
+    </li>
+
+    <li class="dropdown">
+
+        <a href="#">Rólunk ▾</a>
+
+        <ul class="dropdown-menu">
+
+            <li>
+                <a href="bemutatkozas.html">Bemutatkozás</a>
+            </li>
+
+            <li>
+                <a href="#">Képzőközpontunk</a>
+            </li>
+
+            <li>
+                <a href="#">Partnereink</a>
+            </li>
+
+        </ul>
+
+    </li>
+
+    <li class="dropdown">
+
+        <a href="#">Képzéseink ▾</a>
+
+        <ul class="dropdown-menu">
+
+            <!-- SZAKMÁINK -->
+            <li class="dropdown-submenu">
+
+                <a href="szakmaink.html">Szakmáink ▸</a>
+
+                <ul class="dropdown-menu">
+
+                    <li>
+                        <a href="szakmaink.html?varos=Budapest">
+                            Budapest
+                        </a>
+                    </li>
+
+                    <li>
+                        <a href="szakmaink.html?varos=Kazincbarcika">
+                            Kazincbarcika
+                        </a>
+                    </li>
+
+                </ul>
+
+            </li>
+
+        </ul>
+
+    </li>
+
+    <li class="dropdown">
+
+        <a href="#">Duális képzés ▾</a>
+
+        <ul class="dropdown-menu">
+
+            <li>
+                <a href="#">A duális képzésről</a>
+            </li>
+
+            <li>
+                <a href="#">Partnervállalatok</a>
+            </li>
+
+            <li>
+                <a href="#">Munkaszerződés</a>
+            </li>
+
+        </ul>
+
+    </li>
+
+    <li>
+        <a href="#">Kapcsolat</a>
+    </li>
+
+</ul>
+`;
+
+export function aktualisLinkKiemelese(nav) {
+    const aktualisOldal = window.location.pathname.split("/").pop() || "index.html";
+
+    nav.querySelectorAll(".menu > li > a").forEach(link => {
+        const linkOldal = link.getAttribute("href");
+
+        if (linkOldal === aktualisOldal) {
+            link.classList.add("aktiv");
+        }
+    });
+}
+
+export function navBetoltese(helyfoglaloId = "nav-placeholder") {
+    const helyfoglalo = document.querySelector(`#${helyfoglaloId}`);
+
+    if (!helyfoglalo) {
+        console.warn(`Nem található "#${helyfoglaloId}" elem a navigáció betöltéséhez.`);
+        return;
+    }
+
+    helyfoglalo.innerHTML = NAV_HTML;
+    aktualisLinkKiemelese(helyfoglalo);
+}
+
+// A modul importálásakor automatikusan be is tölti a navigációt,
+// így külön hívás nélkül is működik minden oldalon.
+navBetoltese();

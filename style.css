@@ -38,6 +38,11 @@ nav {
     background-color: #eeeeee;
 }
 
+.menu > li > a.aktiv {
+    font-weight: bold;
+    background-color: #eeeeee;
+}
+
 
 .dropdown-menu {
     display: none;
