@@ -28,7 +28,7 @@ const NAV_HTML = `
 
     <li class="dropdown">
 
-        <a href="#">Képzéseink ▾</a>
+        <a href="szakmaink.html">Képzéseink ▾</a>
 
         <ul class="dropdown-menu">
 
