@@ -19,7 +19,7 @@ const NAV_HTML = `
             </li>
 
             <li>
-                <a href="kepzokozpontunk.html">Képzőközpontunk</a>
+                <a href="#">Képzőközpontunk</a>
             </li>
 
         </ul>
@@ -73,8 +73,25 @@ const NAV_HTML = `
                 <a href="partnereink.html">Partnervállalatok</a>
             </li>
 
-            <li>
-                <a href="#">Munkaszerződés</a>
+            <!-- ALAP DOKUMENTUMOK -->
+            <li class="dropdown-submenu">
+
+                <a href="#">Alap Dokumentumok ▸</a>
+
+                <ul class="dropdown-menu">
+
+                    <li>
+                        <a href="#">Munkaszerződés</a>
+                    </li>
+
+                    <li>
+                        <a href="egyuttmukodesi-megallapodas.html">
+                            Együttműködési megállapodás minta
+                        </a>
+                    </li>
+
+                </ul>
+
             </li>
 
         </ul>
