@@ -19,7 +19,7 @@ const NAV_HTML = `
             </li>
 
             <li>
-                <a href="#">Képzőközpontunk</a>
+                <a href="kepzokozpontunk.html">Képzőközpontunk</a>
             </li>
 
         </ul>
