@@ -61,7 +61,7 @@ const NAV_HTML = `
 
     <li class="dropdown">
 
-        <a href="#">Duális képzés ▾</a>
+        <a href="dualisKepzes.html">Duális képzés ▾</a>
 
         <ul class="dropdown-menu">
 
